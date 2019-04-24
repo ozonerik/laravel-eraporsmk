@@ -14,26 +14,13 @@ class UserLogin extends Controller
         if(!Session::get('login')){
             return redirect('login')->with('alert','Kamu harus login dulu');
         }
-        else if (Session::get('login') and Session::get('usertype')=="1"){
-            return view('pages.admin');
+        else{
+            return view('pages.home');
 		}
-		else if (Session::get('login') and Session::get('usertype')=="2"){
-            return view('pages.opt');
-		}
-		else if (Session::get('login') and Session::get('usertype')=="3"){
-            return view('pages.walikelas');
-		}
-		else if (Session::get('login') and Session::get('usertype')=="4"){
-            return view('pages.guru');
-		}
-		else if (Session::get('login') and Session::get('usertype')=="5"){
-            return view('pages.siswa');
-		}
-		
     }
 
     public function login(){
-        return view('pages.home');
+        return view('pages.login');
     }
 
     public function loginPost(Request $request){
@@ -47,7 +34,7 @@ class UserLogin extends Controller
 				Session::put('username',$data->username);
 				Session::put('usertype',$data->user_type);
 				Session::put('name',$data->name);
-				Session::put('name',$data->name);				
+				Session::put('group_user',$data->users_usertypes->group_user);				
                 Session::put('login',TRUE);
                 return redirect('home');
             }

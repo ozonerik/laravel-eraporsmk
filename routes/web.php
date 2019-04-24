@@ -17,3 +17,4 @@ Route::post('/loginPost', 'UserLogin@loginPost');
 Route::get('/register', 'UserLogin@register');
 Route::post('/registerPost', 'UserLogin@registerPost');
 Route::get('/logout', 'UserLogin@logout');
+Route::get('/sekolah', 'SekolahController@index');

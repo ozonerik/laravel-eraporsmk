@@ -30,18 +30,7 @@
                 <img src="{{ asset('template/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-                  {{Session::get('username')}} - 
-				  @if(Session::get('usertype')==1)
-					  Admin
-				  @elseif(Session::get('usertype')==2)
-					  Operator
-				  @elseif(Session::get('usertype')==3)
-					  Wali Kelas
-				  @elseif(Session::get('usertype')==4)
-					  Guru
-				  @elseif(Session::get('usertype')==5)
-					  Siswa
-				  @endif
+				{{Session::get('username')}} | {{Session::get('group_user')}}
 				 <small>eRapor SMKN 1 Krangkeng</small>
                 </p>
               </li>

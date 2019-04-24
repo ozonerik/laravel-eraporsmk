@@ -1,46 +1,46 @@
 @extends('layout.home')
 @section('title','Home')
 @section('content')
-<div class="login-box">
-  <div class="login-logo">
-    <a href=""><img src="{{ asset('template/logo/erapor.png') }}" /></a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Login Page
-			@if(\Session::has('alert'))
-                <div class="alert alert-danger">
-                    <div>{{Session::get('alert')}}</div>
-                </div>
-            @endif
-            @if(\Session::has('alert-success'))
-                <div class="alert alert-success">
-                    <div>{{Session::get('alert-success')}}</div>
-                </div>
-            @endif
-	</p>
-    <form action="{{ url('/loginPost') }}" method="post">
-	{{ csrf_field() }}
-      <div class="form-group has-feedback">
-        <input name="username" id="username" type="text" class="form-control" placeholder="Username">
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input name="password" id="password" type="password" class="form-control" placeholder="Password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-        <div class="col-xs-8">
-		  <a href="{{url('register')}}" class="btn btn-success btn-block btn-flat">Register</a>
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Home
+        <small>it all starts here</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Title</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
         </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+        <div class="box-body">
+          Start creating your amazing application!
         </div>
-        <!-- /.col -->
+        <!-- /.box-body -->
+        <div class="box-footer">
+          Footer
+        </div>
+        <!-- /.box-footer-->
       </div>
-    </form>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
   </div>
-  <!-- /.login-box-body -->
-</div>
 @endsection

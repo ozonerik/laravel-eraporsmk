@@ -3,20 +3,20 @@
     <section class="sidebar">
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
+		<li class="header">Anda Login Sebagai:</li>
+        <li><a href="{{ url('home') }}"><i class="fa fa-user text-red"></i> <span>{{Session::get('group_user')}}</span></a></li>
         <li class="header">MAIN NAVIGATION</li>
+		<li><a href="{{ url('home') }}"><i class="fa fa-home"></i><span>Home</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i>
-			<span>Halaman</span>
+			<span>Sekolah</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{ url('/admin') }}"><i class="fa fa-circle-o"></i>Admin</a></li>
-            <li><a href="{{ url('/walikelas') }}"><i class="fa fa-circle-o"></i>Wali Kelas</a></li>
-			<li><a href="{{ url('/guru') }}"><i class="fa fa-circle-o"></i>Guru</a></li>
-            <li><a href="{{ url('/siswa') }}"><i class="fa fa-circle-o"></i>Siswa</a></li>
+            <li><a href="{{ url('sekolah') }}"><i class="fa fa-circle-o"></i>Profile</a></li>
           </ul>
         </li>
       </ul>

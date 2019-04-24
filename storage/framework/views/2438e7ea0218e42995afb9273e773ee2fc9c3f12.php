@@ -30,18 +30,8 @@
                 <img src="<?php echo e(asset('template/dist/img/user2-160x160.jpg')); ?>" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo e(Session::get('username')); ?> - 
-				  <?php if(Session::get('usertype')==1): ?>
-					  Admin
-				  <?php elseif(Session::get('usertype')==2): ?>
-					  Operator
-				  <?php elseif(Session::get('usertype')==3): ?>
-					  Wali Kelas
-				  <?php elseif(Session::get('usertype')==4): ?>
-					  Guru
-				  <?php elseif(Session::get('usertype')==5): ?>
-					  Siswa
-				  <?php endif; ?>
+				<?php echo e(Session::get('username')); ?> | <?php echo e(Session::get('group_user')); ?>
+
 				 <small>eRapor SMKN 1 Krangkeng</small>
                 </p>
               </li>

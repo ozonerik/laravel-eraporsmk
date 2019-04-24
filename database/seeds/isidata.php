@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
-class UsersSeed extends Seeder
+class isidata extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,7 +11,44 @@ class UsersSeed extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert(array(
+		DB::table('sekolahs')->insert(array(
+		[
+        	'npsn' => '20241355',
+        	'nama_sekolah' => 'SMKN 1 Krangkeng',
+			'alamat' => 'Jl. Raya Singakerta Km. 33',
+			'kelurahan' => 'Singakerta',
+			'kecamatan' => 'Krangkeng',
+			'kota' => 'Indramayu',
+			'provinsi' => 'Jawa Barat',
+			'kodepos' => '45284',
+			'status' => 'aktif'
+        ]
+		));
+		
+		DB::table('usertypes')->insert(array(
+		[
+        	'id_usertype' => '1',
+        	'group_user' => 'Admin'
+        ],
+		[
+        	'id_usertype' => '2',
+        	'group_user' => 'Operator'
+        ],
+		[
+        	'id_usertype' => '3',
+        	'group_user' => 'Walikelas'
+        ],
+		[
+        	'id_usertype' => '4',
+        	'group_user' => 'Guru'
+        ],
+		[
+        	'id_usertype' => '5',
+        	'group_user' => 'Siswa'
+        ]
+		));
+		
+		DB::table('users')->insert(array(
 		[
         	'username' => 'admin',
         	'email' => 'admin@smkn1krangkeng.sch.id',
@@ -48,7 +84,7 @@ class UsersSeed extends Seeder
         	'name' => 'Siswa',
 			'user_type' => '5'
         ]
-		)
-		);
+		));
+		
     }
 }
