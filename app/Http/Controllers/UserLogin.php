@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\ModelUser;
+use App\ModelUsertype;
 
 class UserLogin extends Controller
 {
@@ -34,7 +35,8 @@ class UserLogin extends Controller
     }
 
     public function register(Request $request){
-        return view('pages.register');
+		$usertype = ModelUsertype::all();
+        return view('pages.register',['groupuser' => $usertype]);
     }
 
     public function registerPost(Request $request){

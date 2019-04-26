@@ -49,11 +49,9 @@
         <label>User Type</label>
                   <select name="user_type" class="form-control">
 					<option selected hidden></option>
-                    <option value="1">Admin</option>
-                    <option value="2">Operator</option>
-                    <option value="3">Wali Kelas</option>
-                    <option value="4">Guru</option>
-                    <option value="5">Siswa</option>
+					<?php $__currentLoopData = $groupuser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+					<option value="<?php echo e($tp->id_usertype); ?>"><?php echo e($tp->group_user); ?></option>
+					<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </select>
         <span class="form-control-feedback"></span>
       </div>

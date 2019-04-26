@@ -49,11 +49,9 @@
         <label>User Type</label>
                   <select name="user_type" class="form-control">
 					<option selected hidden></option>
-                    <option value="1">Admin</option>
-                    <option value="2">Operator</option>
-                    <option value="3">Wali Kelas</option>
-                    <option value="4">Guru</option>
-                    <option value="5">Siswa</option>
+					@foreach ($groupuser as $tp)
+					<option value="{{$tp->id_usertype}}">{{$tp->group_user}}</option>
+					@endforeach
                   </select>
         <span class="form-control-feedback"></span>
       </div>
