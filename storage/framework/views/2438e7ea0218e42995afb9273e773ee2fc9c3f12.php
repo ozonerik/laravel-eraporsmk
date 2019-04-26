@@ -22,7 +22,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="<?php echo e(asset('template/dist/img/user2-160x160.jpg')); ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo e(Session::get('name')); ?></span>
+              <span class="hidden-xs"><?php echo e(Auth::user()->name); ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -30,7 +30,7 @@
                 <img src="<?php echo e(asset('template/dist/img/user2-160x160.jpg')); ?>" class="img-circle" alt="User Image">
 
                 <p>
-				<?php echo e(Session::get('username')); ?> | <?php echo e(Session::get('group_user')); ?>
+				<?php echo e(Auth::user()->username); ?> | <?php echo e(Auth::user()->users_usertypes->group_user); ?>
 
 				 <small>eRapor SMKN 1 Krangkeng</small>
                 </p>

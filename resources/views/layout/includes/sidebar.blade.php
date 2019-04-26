@@ -4,7 +4,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
 		<li class="header">Anda Login Sebagai:</li>
-        <li><a href="{{ url('home') }}"><i class="fa fa-user text-red"></i> <span>{{Session::get('group_user')}}</span></a></li>
+        <li><a href="{{ url('home') }}"><i class="fa fa-user text-red"></i> <span>{{Auth::user()->users_usertypes->group_user}}</span></a></li>
         <li class="header">MAIN NAVIGATION</li>
 		<li><a href="{{ url('home') }}"><i class="fa fa-home"></i><span>Home</span></a></li>
         <li class="treeview">

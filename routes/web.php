@@ -10,11 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'UserLogin@index');
-Route::get('/home', 'UserLogin@index');
-Route::get('/login', 'UserLogin@login');
+Route::get('/', 'UserLogin@login');
+Route::get('/home', 'HomeController@index')->middleware('auth:users');
+Route::get('/login', 'UserLogin@login')->name('login');
 Route::post('/loginPost', 'UserLogin@loginPost');
 Route::get('/register', 'UserLogin@register');
 Route::post('/registerPost', 'UserLogin@registerPost');
 Route::get('/logout', 'UserLogin@logout');
-Route::get('/sekolah', 'SekolahController@index');
+Route::get('/sekolah', 'SekolahController@index')->middleware('auth:users');

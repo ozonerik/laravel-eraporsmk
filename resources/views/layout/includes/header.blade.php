@@ -22,7 +22,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{{ asset('template/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{Session::get('name')}}</span>
+              <span class="hidden-xs">{{Auth::user()->name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -30,7 +30,7 @@
                 <img src="{{ asset('template/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
-				{{Session::get('username')}} | {{Session::get('group_user')}}
+				{{Auth::user()->username}} | {{Auth::user()->users_usertypes->group_user}}
 				 <small>eRapor SMKN 1 Krangkeng</small>
                 </p>
               </li>
