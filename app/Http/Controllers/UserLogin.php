@@ -40,14 +40,24 @@ class UserLogin extends Controller
     }
 
     public function registerPost(Request $request){
+		$messages = [
+					'required' => 'kolom :attribute wajib diisi!',
+					'digits' => 'kolom :attribute harus bernilai :digits karakter!',
+					'min' => 'kolom :attribute minimal :min karakter!',
+					'unique' => 'Silahkan ganti nilai di kolom :attribute dengan yang lain!',
+					'numeric' => 'kolom :attribute harus harus diisi dengan angka!',
+					'same' => 'kolom :attribute harus bernilai sama dengan password !',
+					'url' => 'kolom :attribute harus berbentuk URL (misalnya: http://www.test.com)!',
+					'email' => 'kolom :attribute harus berbentuk Email (misalnya: test@test.com)!',
+				];
         $this->validate($request, [
             'name' => 'required|min:4',
-			'username' => 'required|min:4',
+			'username' => 'required|min:4|unique:users',
             'email' => 'required|min:4|email|unique:users',
             'password' => 'required',
             'confirmation' => 'required|same:password',
 			'user_type' => 'required',
-        ]);
+        ],$messages);
 		//registrasi
         $data =  new ModelUser();
         $data->name = $request->name;

@@ -9,7 +9,9 @@
   <div class="login-box-body">
     <p class="login-box-msg">Register Page
             @if ($errors->any())
-                <div class="alert alert-danger">
+                <div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<h4><i class="icon fa fa-ban"></i> Kesalahan!</h4>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -57,11 +59,11 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-		  <a href="{{url('/login')}}" class="btn btn-danger btn-block btn-flat">Cancel</a>
+		  <a href="{{url('/login')}}" class="btn btn-danger btn-block fa fa-undo"> Cancel</a>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
+          <button type="submit" class="btn btn-primary btn-block fa fa-save"> Register</button>
         </div>
         <!-- /.col -->
       </div>

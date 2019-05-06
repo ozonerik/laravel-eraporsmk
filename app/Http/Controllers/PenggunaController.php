@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\ModelSekolah;
+use App\ModelUser;
+use App\ModelUsertype;
 
 
-class SekolahController extends Controller
+class PenggunaController extends Controller
 {
     public function index()
     {
@@ -21,9 +22,48 @@ class SekolahController extends Controller
 				return redirect('home');
 			} else {
 				// mengambil data pegawai
-				$sekolah = ModelSekolah::where('status','aktif')->first();
+				$pengguna = ModelUser::all();
 				// mengirim data pegawai ke view pegawai
-				return view('pages.sekolah', ['dtsek' => $sekolah]);
+				return view('pages.pengguna', ['pengguna' => $pengguna]);
+			}
+		}
+    }
+	
+	public function del($id)
+    {
+    	if(!Auth::check()){
+            return redirect('login')->with('alert','Kamu harus login dulu');
+        }
+        else{
+			//hak akses halaman
+			$hu = Auth::user()->user_type;
+			if ($hu!=='1'&&$hu!=='2'){
+				return redirect('home');
+			} else {
+				// mengambil data pegawai
+				$pengguna = ModelUser::where('id',$id)->delete();
+				// mengirim data pegawai ke view pegawai
+				return redirect('pengguna')->with('alert-success','Data Berhasil terhapus');
+			}
+		}
+    }
+	
+	public function delall(Request $request)
+    {
+    	if(!Auth::check()){
+            return redirect('login')->with('alert','Kamu harus login dulu');
+        }
+        else{
+			//hak akses halaman
+			$hu = Auth::user()->user_type;
+			if ($hu!=='1'&&$hu!=='2'){
+				return redirect('home');
+			} else {
+				// mengambil data pegawai
+				$ids=$request->ids;
+				$pengguna = ModelUser::where('id', explode(",",$ids))->delete();
+				// mengirim data pegawai ke view pegawai
+				return redirect('pengguna')->with('alert-success','Data Berhasil terhapus');
 			}
 		}
     }
@@ -39,10 +79,7 @@ class SekolahController extends Controller
 			if ($hu!=='1'&&$hu!=='2'){
 				return redirect('home');
 			} else {
-				// mengambil data pegawai
-				$sekolah = ModelSekolah::where('status','aktif')->first();
-				// mengirim data pegawai ke view pegawai
-				return view('pages.edit-sekolah', ['dtsek' => $sekolah]);
+				
 			}
 		}
     }
@@ -67,36 +104,11 @@ class SekolahController extends Controller
 				];
 
 				$this->validate($request,[
-				   'npsn' => 'required|digits:8|numeric',
-				   'nss' => 'nullable|numeric',
-				   'nama_sekolah' => 'required',
-				   'alamat' => 'required',
-				   'kelurahan' => 'required',
-				   'kecamatan' => 'required',
-				   'kota' => 'required',
-				   'provinsi' => 'required',
-				   'negara' => 'required',
-				   'website' => 'nullable|url',
-				   'kodepos' => 'required|digits:5|numeric',
-				   'email' => 'nullable|email'			   
+		   
 				],$messages);
 			 
-				$sekolah = ModelSekolah::where('status','aktif')->first();
-				$sekolah->npsn = $request->npsn;
-				$sekolah->nss = $request->nss;
-				$sekolah->nama_sekolah = $request->nama_sekolah;
-				$sekolah->alamat = $request->alamat;
-				$sekolah->kelurahan = $request->kelurahan;
-				$sekolah->kecamatan = $request->kecamatan;
-				$sekolah->kota = $request->kota;
-				$sekolah->kodepos = $request->kodepos;
-				$sekolah->telp = $request->telp;
-				$sekolah->website = $request->website;
-				$sekolah->email = $request->email;
-				$sekolah->provinsi = $request->provinsi;
-				$sekolah->negara = $request->negara;
-				$sekolah->save();
-				return redirect('sekolah')->with('alert-success','Data Berhasil terupdate');
+
+				return redirect('pengguna')->with('alert-success','Data Berhasil terupdate');
 			}
 		}
     }

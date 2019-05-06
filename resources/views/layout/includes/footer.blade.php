@@ -23,5 +23,15 @@
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()
+	window.setTimeout(function() {
+		$(".alert-danger").fadeTo(1000, 0).slideUp(1000, function(){
+			$(this).remove(); 
+		});
+	}, 5000);
+	window.setTimeout(function() {
+		$(".alert-success").fadeTo(1000, 0).slideUp(1000, function(){
+			$(this).remove(); 
+		});
+	}, 1000);
   })
 </script>

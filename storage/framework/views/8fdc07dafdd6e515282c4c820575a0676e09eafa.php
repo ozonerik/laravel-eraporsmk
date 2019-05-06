@@ -9,14 +9,26 @@
 		<li><a href="<?php echo e(url('home')); ?>"><i class="fa fa-home"></i><span>Home</span></a></li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i>
+            <i class="fa fa-university"></i>
 			<span>Sekolah</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="<?php echo e(url('sekolah')); ?>"><i class="fa fa-circle-o"></i>Profile</a></li>
+            <li><a href="<?php echo e(url('sekolah')); ?>"><i class="fa fa-circle-o"></i>Profile Sekolah</a></li>
+          </ul>
+        </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-cog"></i>
+			<span>Konfigurasi</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="<?php echo e(url('pengguna')); ?>"><i class="fa fa-circle-o"></i>Pengguna</a></li>
           </ul>
         </li>
       </ul>
