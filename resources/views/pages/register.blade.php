@@ -21,7 +21,7 @@
             @endif
 	</p>
     <form action="{{ url('/registerPost') }}" method="post">
-	{{ csrf_field() }}
+	@csrf
       <div class="form-group has-feedback">
 		<label>Username</label>
         <input name="username" id="username" type="text" class="form-control" placeholder="Username">

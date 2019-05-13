@@ -22,7 +22,7 @@
 				@endif
 	</p>
     <form action="{{ url('/loginPost') }}" method="post">
-	{{ csrf_field() }}
+	@csrf
       <div class="form-group has-feedback">
         <input name="username" id="username" type="text" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
 
 class isidata extends Seeder
 {
@@ -85,6 +86,20 @@ class isidata extends Seeder
 			'user_type' => '5'
         ]
 		));
+		
+		$faker = Faker::create('id_ID');
+    	for($i = 1; $i <= 50; $i++){
+ 
+    	      // insert data ke table pegawai menggunakan Faker
+    		DB::table('users')->insert([
+    			'username' => $faker->userName,
+    			'email' => $faker->unique()->email,
+    			'password' => bcrypt('12345'),
+    			'name' => $faker->name,
+				'user_type' => $faker->numberBetween(1,5),
+    		]);
+ 
+    	}
 		
     }
 }

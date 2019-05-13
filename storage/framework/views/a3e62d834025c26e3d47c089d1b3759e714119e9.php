@@ -21,8 +21,7 @@
 				<?php endif; ?>
 	</p>
     <form action="<?php echo e(url('/loginPost')); ?>" method="post">
-	<?php echo e(csrf_field()); ?>
-
+	<?php echo csrf_field(); ?>
       <div class="form-group has-feedback">
         <input name="username" id="username" type="text" class="form-control" placeholder="Username">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>

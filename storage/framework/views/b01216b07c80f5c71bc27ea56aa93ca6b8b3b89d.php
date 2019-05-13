@@ -1,6 +1,5 @@
-@extends('layout.home')
-@section('title','Sekolah | Profile Sekolah')
-@section('content')
+<?php $__env->startSection('title','Sekolah | Profile Sekolah'); ?>
+<?php $__env->startSection('content'); ?>
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -9,26 +8,24 @@
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="{{ url('/home') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Sekolah</a></li>
-        <li class="active"><a href="{{ url('/sekolah') }}">Profile Sekolah</a></li>
-      </ol>
+        <li><a href="<?php echo e(url('/home')); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="<?php echo e(url('/sekolah')); ?>">Sekolah</a></li>
+        <li class="active"><a href="<?php echo e(url('/sekolah')); ?>">Profile Sekolah</a></li>      </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-				@if(\Session::has('alert'))
+            <?php if($errors->any()): ?>
                 <div class="alert alert-danger alert-dismissible">
-			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <div class="icon fa fa-ban"> {{Session::get('alert')}}</div>
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<h4><i class="icon fa fa-ban"></i> Kesalahan!</h4>
+                    <ul>
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <li><?php echo e($error); ?></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
                 </div>
-				@endif
-				@if(\Session::has('alert-success'))
-                <div class="alert alert-success alert-dismissible">
-			    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <div class="icon fa fa-check"> {{Session::get('alert-success')}}</div>
-                </div>
-				@endif
+            <?php endif; ?>
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
@@ -45,91 +42,97 @@
         <div class="box-body">
           <div class="box box-info">
             <!-- form start -->
-            <form class="form-horizontal" method="get" action="{{ url('/sekolah/edit') }}">
-			{{ csrf_field() }}
+            <form class="form-horizontal" method="post" action="<?php echo e(route('sekolah.update',$sekolah->id)); ?>">
+			  <?php echo method_field('PATCH'); ?>
+			  <?php echo csrf_field(); ?>
               <div class="box-body">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">NPSN</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="npsn" placeholder="NPSN" value="{{ $dtsek->npsn }}" disabled>
+                    <input type="text" class="form-control" name="npsn" placeholder="NPSN" value="<?php echo e($sekolah->npsn); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">NIS/NSS/NDS </label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nss" placeholder="NIS/NSS/NDS" value="{{ $dtsek->nss }}" disabled>
+                    <input type="text" class="form-control" name="nss" placeholder="NIS/NSS/NDS" value="<?php echo e($sekolah->nss); ?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Nama Sekolah</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="nama_sekolah" placeholder="Nama Sekolah" value="{{ $dtsek->nama_sekolah }}" disabled>
+                    <input type="text" class="form-control" name="nama_sekolah" placeholder="Nama Sekolah" value="<?php echo e($sekolah->nama_sekolah); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Alamat</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="{{ $dtsek->alamat }}" disabled>
+                    <input type="text" class="form-control" name="alamat" placeholder="Alamat" value="<?php echo e($sekolah->alamat); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Kelurahan</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="kelurahan" placeholder="Kelurahan" value="{{ $dtsek->kelurahan }}" disabled>
+                    <input type="text" class="form-control" name="kelurahan" placeholder="Kelurahan" value="<?php echo e($sekolah->kelurahan); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Kecamatan</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="kecamatan" placeholder="Kecamatan" value="{{ $dtsek->kecamatan }}" disabled>
+                    <input type="text" class="form-control" name="kecamatan" placeholder="Kecamatan" value="<?php echo e($sekolah->kecamatan); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Kota/ Kab</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="kota" placeholder="Kota/ Kab" value="{{ $dtsek->kota }}" disabled>
+                    <input type="text" class="form-control" name="kota" placeholder="Kota/ Kab" value="<?php echo e($sekolah->kota); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Kode Pos</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="kodepos" placeholder="Kode Pos" value="{{ $dtsek->kodepos }}" disabled>
+                    <input type="text" class="form-control" name="kodepos" placeholder="Kode Pos" value="<?php echo e($sekolah->kodepos); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Telp</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="telp" placeholder="Telp" value="{{ $dtsek->telp }}" disabled>
+                    <input type="text" class="form-control" name="telp" placeholder="Telp" value="<?php echo e($sekolah->telp); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Website</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="website" placeholder="Website" value="{{ $dtsek->website }}" disabled>
+                    <input type="text" class="form-control" name="website" placeholder="Website" value="<?php echo e($sekolah->website); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Email</label>
                   <div class="col-sm-6">
-                    <input type="email" class="form-control" name="email" placeholder="Email" value="{{ $dtsek->email }}" disabled>
+                    <input type="email" class="form-control" name="email" placeholder="Email" value="<?php echo e($sekolah->email); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="provinsi" placeholder="Provinsi" value="{{ $dtsek->provinsi }}" disabled>
+                    <input type="text" class="form-control" name="provinsi" placeholder="Provinsi" value="<?php echo e($sekolah->provinsi); ?>">
                   </div>
                 </div>
 				<div class="form-group">
                   <label class="col-sm-2 control-label">Negara</label>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control" name="negara" placeholder="Negara" value="{{ $dtsek->negara }}" disabled>
+                    <input type="text" class="form-control" name="negara" placeholder="Negara" value="<?php echo e($sekolah->negara); ?>">
                   </div>
                 </div>		
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-6">
 					  <div class="box-footer">
-						<button type="submit" class="btn btn-warning pull-right fa fa-edit"> Edit</button>
+						<div class="col-xs-4">
+						<a href="<?php echo e(route('sekolah.index')); ?>" class="btn btn-danger btn-block fa fa-undo"> Cancel</a>
+						</div>
+					    <div class="col-xs-8">
+						<button type="submit" class="btn btn-info pull-right fa fa-save"> Update</button>
+						</div>
 					  </div>
                   </div>
                 </div>
@@ -150,4 +153,5 @@
     </section>
     <!-- /.content -->
   </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.home', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\erapor\resources\views/pages/sekolah/edit.blade.php ENDPATH**/ ?>

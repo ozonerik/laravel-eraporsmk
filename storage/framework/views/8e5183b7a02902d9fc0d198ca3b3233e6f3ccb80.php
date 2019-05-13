@@ -20,8 +20,7 @@
             <?php endif; ?>
 	</p>
     <form action="<?php echo e(url('/registerPost')); ?>" method="post">
-	<?php echo e(csrf_field()); ?>
-
+	<?php echo csrf_field(); ?>
       <div class="form-group has-feedback">
 		<label>Username</label>
         <input name="username" id="username" type="text" class="form-control" placeholder="Username">

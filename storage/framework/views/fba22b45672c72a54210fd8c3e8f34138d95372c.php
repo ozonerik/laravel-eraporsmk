@@ -45,19 +45,21 @@
           <div class="box box-info">
             <div class="box">
             <div class="box-header">
-			<form action="<?php echo e(url('/pengguna/del/all')); ?>" method="post">
-			<?php echo e(csrf_field()); ?>
-
               <h3 class="box-title">Daftar Pengguna</h3>
-			  <button type="button" class="btn-sm btn-success fa fa-plus pull-right"> Tambah</button>
-			  <button type="submit" class="btn-sm btn-danger fa fa-trash pull-right"> Hapus Terpilih</button>
 			</div>
+			<div>
+			<button type="button" class="btn-sm btn-success fa fa-plus pull-right"> Tambah</button>
+			<button type="submit" class="btn-sm btn-danger fa fa-trash pull-right" 
+			id="delete_all" data-toggle="modal" data-target="#delallModal" 
+			> Hapus Terpilih</button>
+			</div>
+			<br><br>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="table" class="table table-bordered table-striped table-hover">
+              <table id="userTable" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
-				  <th width="5%"><input type="checkbox" class="selectall minimal-red"></th>
+				  <th width="5%"><input type="checkbox" id="check_all" ></th>
 				  <th width="5%">No</th>
                   <th width="15%">Username</th>
                   <th width="23%">Nama</th>
@@ -69,9 +71,11 @@
                 <tbody>
 				<?php if($pengguna->count()): ?>
 				<?php $__currentLoopData = $pengguna; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $no => $pengguna): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <tr id="tr_<?php echo e($pengguna->id); ?>">
+                <tr>
 					<td>
-					<input type="checkbox" name="ids[]" class="selectbox minimal-red" value="<?php echo e($pengguna->id); ?>">
+					<input type="checkbox" name="checkId" class="checkbox" 
+					value="<?php echo e($pengguna->id); ?>" data-nama="<?php echo e($pengguna->name); ?>"
+					>
 					</td>
 					<td><?php echo e(++$no); ?></td>
                     <td><?php echo e($pengguna->username); ?></td>
@@ -79,19 +83,19 @@
 					<td><?php echo e($pengguna->users_usertypes->group_user); ?></td>
 					<td><?php echo e($pengguna->email); ?></td>
                     <td>	
-					<button type="submit" class="btn btn-primary btn-block fa fa-save"> Edit</button>
-						
-					<button type="button" class="btn-sm btn-danger fa fa-remove"
-					data-toggle="modal" data-target="#modal-default"
-					> Hapus</button>					
-					</td>
+					<button type="button" class="btn-sm btn-warning fa fa-save"> Edit</button>			
+					<button type="button" class="btn-sm btn-danger fa fa-remove" 
+					data-toggle="modal" data-target="#delModal" 
+					data-userid="<?php echo e($pengguna->id); ?>"
+					data-namauser="<?php echo e($pengguna->name); ?>"
+					> Hapus</button>
                 </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 				<?php endif; ?>
                 </tbody>
                 <tfoot>
                 <tr>
-				  <th width="5%"><input type="checkbox" class="selectall2 minimal-red"></th>
+				  <th width="5%"><input type="checkbox" id="check_all2" ></th>
 				  <th>No</th>
                   <th>Username</th>
                   <th>Nama</th>
@@ -101,29 +105,59 @@
                 </tr>
                 </tfoot>
               </table>
-			  </form>
-				<div class="modal fade" id="modal-default">
-				  <div class="modal-dialog">
+			  
+				<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog"role="document">
 					<div class="modal-content">
 					  <div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						  <span aria-hidden="true">&times;</span></button>
-						<h4 class="modal-title">Konfirmasi</h4>
+						<h4 class="modal-title text-center">Delete Confirmation</h4>
 					  </div>
+					  <form action="<?php echo e(route('pengguna.destroy', 'user_id')); ?>" method="post">
+						<?php echo method_field('DELETE'); ?>
+						<?php echo csrf_field(); ?>
 					  <div class="modal-body">
-						<p>Apakah anda yakin ingin menghapus data tersebut</p>
+						<p class="text-center" id="pesan"></p>
+						<input type="hidden" name="pengguna_id" id="user_id" value="">
 					  </div>
 					  <div class="modal-footer">
-						<button type="button" class="btn btn-default pull-left fa fa-undo" data-dismiss="modal"> Close</button>
-						<a href="<?php echo e(url('pengguna/del',$pengguna->id )); ?>">
-						<button type="buttom" class="btn btn-danger fa fa-trash"> Delete</button>
-						</a>
+						<button type="button" class="btn btn-default pull-left fa fa-undo" data-dismiss="modal"> No, Cancel</button>
+						<button type="submit" class="btn btn-danger fa fa-trash"> Delete</button>
 					  </div>
+					 </form>
 					</div>
 					<!-- /.modal-content -->
 					</div>
 				  <!-- /.modal-dialog -->
 				</div>
+				
+				<div class="modal fade" id="delallModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog"role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title text-center">Delete Selected Confirmation</h4>
+					  </div>
+					  <form action="<?php echo e(route('pengguna.multidel')); ?>" method="post">
+						<?php echo method_field('DELETE'); ?>
+						<?php echo csrf_field(); ?>
+					  <div class="modal-body">
+						<p class="text-center" id="pesan"></p>
+						<input type="hidden" name="pengguna_id" id="user_id" value="">
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left fa fa-undo" data-dismiss="modal"> No, Cancel</button>
+						<div id="tombol"></div>
+					  </div>
+					 </form>
+					</div>
+					<!-- /.modal-content -->
+					</div>
+				  <!-- /.modal-dialog -->
+				</div>
+				
             </div>
             <!-- /.box-body -->
           </div>
@@ -141,4 +175,4 @@
     <!-- /.content -->
   </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layout.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\erapor\resources\views/pages/pengguna.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layout.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\wamp64\www\erapor\resources\views/pages/pengguna/index.blade.php ENDPATH**/ ?>

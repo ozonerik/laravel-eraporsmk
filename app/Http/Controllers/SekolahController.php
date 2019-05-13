@@ -6,12 +6,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\ModelSekolah;
 
-
 class SekolahController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-    	if(!Auth::check()){
+        if(!Auth::check()){
             return redirect('login')->with('alert','Kamu harus login dulu');
         }
         else{
@@ -23,14 +27,52 @@ class SekolahController extends Controller
 				// mengambil data pegawai
 				$sekolah = ModelSekolah::where('status','aktif')->first();
 				// mengirim data pegawai ke view pegawai
-				return view('pages.sekolah', ['dtsek' => $sekolah]);
+				return view('pages.sekolah.index',compact('sekolah'));
 			}
 		}
     }
-	
-	public function edit()
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-    	if(!Auth::check()){
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        if(!Auth::check()){
             return redirect('login')->with('alert','Kamu harus login dulu');
         }
         else{
@@ -40,16 +82,24 @@ class SekolahController extends Controller
 				return redirect('home');
 			} else {
 				// mengambil data pegawai
-				$sekolah = ModelSekolah::where('status','aktif')->first();
+				$sekolah = ModelSekolah::find($id);
 				// mengirim data pegawai ke view pegawai
-				return view('pages.edit-sekolah', ['dtsek' => $sekolah]);
+				return view('pages.sekolah.edit', compact('sekolah'));
 			}
 		}
+		
     }
-	
-	public function update(Request $request)
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-    	if(!Auth::check()){
+        if(!Auth::check()){
             return redirect('login')->with('alert','Kamu harus login dulu');
         }
         else{
@@ -99,5 +149,16 @@ class SekolahController extends Controller
 				return redirect('sekolah')->with('alert-success','Data Berhasil terupdate');
 			}
 		}
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

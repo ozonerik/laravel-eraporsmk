@@ -47,18 +47,20 @@
             <div class="box">
             <div class="box-header">
               <h3 class="box-title">Daftar Pengguna</h3>
-			  <form method="post">
-			  @csrf
-			  @method('DELETE')
-			  <button type="button" class="btn-sm btn-success fa fa-plus pull-right"> Tambah</button>
-			  <button formaction="{{ url('pengguna/del/all') }}" type="submit" class="btn-sm btn-danger fa fa-trash pull-right"> Hapus Terpilih</button>
-            </div>
+			</div>
+			<div>
+			<button type="button" class="btn-sm btn-success fa fa-plus pull-right"> Tambah</button>
+			<button type="submit" class="btn-sm btn-danger fa fa-trash pull-right" 
+			id="delete_all" data-toggle="modal" data-target="#delallModal" 
+			> Hapus Terpilih</button>
+			</div>
+			<br><br>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="table" class="table table-bordered table-striped table-hover">
+              <table id="userTable" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
-				  <th width="5%"><input type="checkbox" class="selectall minimal-red"></th>
+				  <th width="5%"><input type="checkbox" id="check_all" ></th>
 				  <th width="5%">No</th>
                   <th width="15%">Username</th>
                   <th width="23%">Nama</th>
@@ -70,26 +72,31 @@
                 <tbody>
 				@if($pengguna->count())
 				@foreach($pengguna as $no => $pengguna)
-                <tr id="tr_{{$pengguna->id}}">
-					<td><input type="checkbox" name="ids[]" class="selectbox minimal-red" value="{{ $pengguna->id }}"></td>
+                <tr>
+					<td>
+					<input type="checkbox" name="checkId" class="checkbox" 
+					value="{{$pengguna->id}}" data-nama="{{$pengguna->name}}"
+					>
+					</td>
 					<td>{{ ++$no }}</td>
                     <td>{{ $pengguna->username }}</td>
                     <td>{{ $pengguna->name }}</td>
 					<td>{{ $pengguna->users_usertypes->group_user }}</td>
 					<td>{{ $pengguna->email }}</td>
-                    <td>
-					<button type="button" class="btn-sm btn-warning fa fa-edit">Edit</button>
-					<button type="button" class="btn-sm btn-danger fa fa-remove"
-					data-toggle="modal" data-target="#modal-default"
-					> Hapus</button>		
-					</td>
+                    <td>	
+					<button type="button" class="btn-sm btn-warning fa fa-save"> Edit</button>			
+					<button type="button" class="btn-sm btn-danger fa fa-remove" 
+					data-toggle="modal" data-target="#delModal" 
+					data-userid="{{$pengguna->id}}"
+					data-namauser="{{$pengguna->name}}"
+					> Hapus</button>
                 </tr>
                 @endforeach
 				@endif
                 </tbody>
                 <tfoot>
                 <tr>
-				  <th width="5%"><input type="checkbox" class="selectall2 minimal-red"></th>
+				  <th width="5%"><input type="checkbox" id="check_all2" ></th>
 				  <th>No</th>
                   <th>Username</th>
                   <th>Nama</th>
@@ -98,41 +105,71 @@
 				  <th>Opsi</th>
                 </tr>
                 </tfoot>
-              </table>	
-</form>			  
-		<div class="modal fade" id="modal-default">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Konfirmasi</h4>
-              </div>
-              <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus data tersebut</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left fa fa-undo" data-dismiss="modal"> Close</button>
-				<a href="{{ url('pengguna/del',$pengguna->id ) }}">
-				<button type="buttom" class="btn btn-danger fa fa-trash"> Delete</button>
-				</a>
-              </div>
-            </div>
-            <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
-        </div>
+              </table>
+			  
+				<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog"role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title text-center">Delete Confirmation</h4>
+					  </div>
+					  <form action="{{ route('pengguna.destroy', 'user_id') }}" method="post">
+						@method('DELETE')
+						@csrf
+					  <div class="modal-body">
+						<p class="text-center" id="pesan"></p>
+						<input type="hidden" name="pengguna_id" id="user_id" value="">
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left fa fa-undo" data-dismiss="modal"> No, Cancel</button>
+						<button type="submit" class="btn btn-danger fa fa-trash"> Delete</button>
+					  </div>
+					 </form>
+					</div>
+					<!-- /.modal-content -->
+					</div>
+				  <!-- /.modal-dialog -->
+				</div>
+				
+				<div class="modal fade" id="delallModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog"role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title text-center">Delete Selected Confirmation</h4>
+					  </div>
+					  <form action="{{ route('pengguna.multidel') }}" method="post">
+						@method('DELETE')
+						@csrf
+					  <div class="modal-body">
+						<p class="text-center" id="pesan"></p>
+						<input type="hidden" name="pengguna_id" id="user_id" value="">
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left fa fa-undo" data-dismiss="modal"> No, Cancel</button>
+						<div id="tombol"></div>
+					  </div>
+					 </form>
+					</div>
+					<!-- /.modal-content -->
+					</div>
+				  <!-- /.modal-dialog -->
+				</div>
+				
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-        </div>
+		</div>
         <!-- /.box-body -->
         <div class="box-footer">
           Footer
         </div>
         <!-- /.box-footer-->
-      </div>
+        </div>
       <!-- /.box -->
 
     </section>

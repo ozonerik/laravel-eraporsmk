@@ -17,8 +17,6 @@
 <script src="{{ asset('template/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <!-- SlimScroll -->
 <script src="{{ asset('template/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
-<!-- iCheck 1.0.1 -->
-<script src="{{ asset('template/plugins/iCheck/icheck.min.js') }}"></script>
 <!-- FastClick -->
 <script src="{{ asset('template/bower_components/fastclick/lib/fastclick.js') }}"></script>
 <!-- AdminLTE App -->
@@ -27,24 +25,52 @@
 <script src="{{ asset('template/dist/js/demo.js') }}"></script>
 <!-- page script -->
 <script>
-  $(function () {
-    $('#table').DataTable({
-      'paging'      : true,
+$(function () {
+    $('#userTable').DataTable({
+	  'paging'      : true,
       'lengthChange': true,
       'searching'   : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true,
-	  "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50,100, "All"]],
+	  "pagingType"	: "full_numbers",
+	  "lengthMenu"	: [[10, 25, 50, 100, -1], [10, 25, 50,100, "All"]],
+	  "columnDefs"	: [{ "orderable": false, "targets": [0,6] }],
+	  "order": [[ 1, 'asc' ]]
     });
-	    $('#check-all').click(function () {
-        $('input[type=checkbox]').not(":disabled").prop('checked', this.checked);
-    });
-    //Red color scheme for iCheck
-    $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-      checkboxClass: 'icheckbox_minimal-red',
-      radioClass   : 'iradio_minimal-red'
-    });
+	
+
+	$('#check_all').on('click', function(e) {
+	 if($(this).is(':checked',true))  
+	 {
+		$(".checkbox").prop('checked', true);
+		$('#check_all2').prop('checked',true);		
+	 } else {  
+		$(".checkbox").prop('checked',false); 
+		$('#check_all2').prop('checked',false);		
+	 }  
+	});
+	
+	$('#check_all2').on('click', function(e) {
+	 if($(this).is(':checked',true))  
+	 {
+		$(".checkbox").prop('checked', true);
+		$('#check_all').prop('checked',true);			
+	 } else {  
+		$(".checkbox").prop('checked',false);
+		$('#check_all').prop('checked',false);		
+	 }  
+	});
+
+	 $('.checkbox').on('click',function(){
+		if($('.checkbox:checked').length == $('.checkbox').length){
+			$('#check_all').prop('checked',true);
+			$('#check_all2').prop('checked',true);
+		}else{
+			$('#check_all').prop('checked',false);
+			$('#check_all2').prop('checked',false);
+		}
+	 });
 
 	window.setTimeout(function() {
 		$(".alert-danger").fadeTo(1000, 0).slideUp(1000, function(){
@@ -56,24 +82,41 @@
 			$(this).remove(); 
 		});
 	}, 1000);
-	$('.selectall').click(function() {
-		$('.selectbox').prop('checked',$(this).prop('checked'));
-		$('.selectall2').prop('checked',$(this).prop('checked'));
-	})
-	$('.selectall2').click(function() {
-		$('.selectbox').prop('checked',$(this).prop('checked'));
-		$('.selectall').prop('checked',$(this).prop('checked'));
-	})
-	$('.selectbox').change(function() {
-		var total = $('.selectbox').length();
-		var number = $('.selectbox:checked').length();
-		if(total==number){
-			$('.selectall').prop('checked',true);
-			$('.selectall2').prop('checked',true);
+	
+	$('#delModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget)
+		var user_id = button.data('userid')
+		var nama_user = button.data('namauser')
+		var modal = $(this)
+		modal.find('.modal-body #pesan').html('Apakah anda ingin menghapus user bernama: <br><div style="color:red">'+nama_user+'</div>');
+		modal.find('.modal-body input').val(user_id)
+	});
+	
+	$('#delallModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget); 
+		var userid = [];
+		var namaid = [];
+		$.each($("input[name='checkId']:checked"), function(){            
+			userid.push($(this).val());
+			namaid.push($(this).data('nama'));
+		});
+		var userids = $.map(userid, function(value){
+			return (value);
+		});
+		var namaids = $.map(namaid, function(value){
+			return (value);
+		});
+		var modal = $(this)
+		if(userids.length>0){
+		modal.find('.modal-footer #tombol').html('<button type="submit" class="btn btn-danger fa fa-trash"> Delete Selected</button>')
+		modal.find('.modal-body #pesan').html('Apakah anda ingin menghapus user bernama: <br><div style="color:red">'+namaids.join(", ")+'</div>');
+		modal.find('.modal-body input').val( userids.join(","))
 		}else{
-			$('.selectall').prop('checked',false);
-			$('.selectall2').prop('checked',false);
+			modal.find('.modal-body #pesan').html('Silahkan ceklis terlebih dahulu data yang ingin dihapus');
 		}
-	})
-  })
+		
+		
+	});
+	
+})
 </script>
