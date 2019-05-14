@@ -1,71 +1,54 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+<img src="https://lh3.googleusercontent.com/ibTn7ItH55oXEts3qN4nAe5jghMMEbqYXJ2ah3gNzqnydUtuVFInR2Y39PzVwokSmf4Cst9_0ZBpZ4CeskRDWpVu5pIRgPyev9W2objfQQFpDmgkZ6H5TdonhNVrL5NNRgjMwWwHUmysRAP3FsOvv3iWHGjp8rjObZ_vNJH9WGFHVCeKDkA9oiqCASQTFcp1C8ZhQO5aK-VCrTKEC0ne5ZLf7Xux_6gP6AgsBln4txYt6XLrSCJ5UxxJWoxCz4w4SFeA-uA4qc-jCDvZV__90swJUSYAEy5QfgWq7nv3FeOqwpgPdZeHrTMXoRMgKvlxwTIxE2aHxzU9FtFbNXEEgJUdTn7h-i-Gsg72kkniJ9xmQwft6JtFirPPM0_1kMINqe3Km3VV_gV4Y1JfDiLK_VCGKv7Pqs2nVJC2fP2nHDxqxWT2VmZGYo7Ky1DX3VfuaD-Xuz5h_2CMXyTFoQ07r4SftTIRzQy5jPdTVbpx84g_2xTDczAKJORUvxIRejNxDjADtMyjpAwwyDlTz6eze4W5SLUj6ATRD1BO9pfdJWz6qILf-OaNPsHKOWiCN0G3no6rAqQ72_2G1ITLK8RB8rtyiRIw6xO95cMkcx_rLtCD8GNYY3_xGiDsgcA77NNHIRKcOmwLFBgLnx26g77kiLwpQo5LyRm1H9IxGPfU82JRpMjb8lFaDGeBce_hsKgcyeqQrBrI1PJDHUvzfuqleO56=w276-h91-no">
 </p>
 
-## About Laravel
+<p align="center">
+version: 1.0.0
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Tentang eRapor SMKN 1 Krangkeng
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+eRapor tersebut, dikembangkan sebagai aplikasi pendukung dalam membuat rapor SMK yang didasarkan pada Panduan Penilaian Hasil Belajar pada Sekolah Menengah Kejuruan Tahun 2017. Aplikasi tersebut dikembangkan dengan Framework Laravel Versi 5.8
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Spesifikasi Minimum
 
-## Learning Laravel
+Spesifikasi Minimum untuk menjalankan aplikasi tersebut adalah:
+- PHP >= 7.1.3
+- OpenSSL PHP Extension
+- PDO PHP Extension
+- Mbstring PHP Extension
+- Tokenizer PHP Extension
+- XML PHP Extension
+- Ctype PHP Extension
+- JSON PHP Extension
+- BCMath PHP Extension
+- MySQL 5.7
+- WAMPServer or XAMPP Server
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Instalasi
+- Install Composer [https://getcomposer.org/download/]
+- Install WampServer [https://sourceforge.net/projects/wampserver/files/latest/download] atau
+Xampp [https://downloadsapachefriends.global.ssl.fastly.net/7.2.18/xampp-windows-x64-7.2.18-0-VC15-installer.exe?from_af=true]
+- Download aplikasi di [https://github.com/ozonerik/laravel-eraporsmk/] 
+- Unzip laravel-eraporsmk-master.zip di [C:\wamp64\www] untuk WampServer atau di [C:\xampp\htdocs] untuk Xampp
+- Rename Folder laravel-eraporsmk-master menjadi erapor
+- Konfigurasi database melalui file .env 
+  contoh:
+  <code>
+  DB_DATABASE=erapor
+  DB_USERNAME=root
+  DB_PASSWORD=root
+  </code>
+- buka CMD, ketik cd C:\wamp64\www\erapor atau cd C:\xampp\htdocs\erapor
+- ketik <code>php artisan migrate:fresh --seed</code>
+- buka browser <url>http://localhost/erapor/public</url>
+- login menggunakan demo akun dengan username/password: 
+   - admin/admin
+   - operator/operator
+   - walikelas/walikelas
+   - guru/guru
+   - siswa/siswa
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost you and your team's skills by digging into our comprehensive video library.
+## Tim Pengembang
+- M. Ade Erik [ozonerik@gmail.com]
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

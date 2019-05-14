@@ -21,7 +21,7 @@ class SekolahController extends Controller
         else{
 			//hak akses halaman
 			$hu = Auth::user()->user_type;
-			if ($hu!=='1'&&$hu!=='2'){
+			if (!hak_akses('1,2',$hu)){
 				return redirect('home');
 			} else {
 				// mengambil data pegawai
@@ -78,7 +78,7 @@ class SekolahController extends Controller
         else{
 			//hak akses halaman
 			$hu = Auth::user()->user_type;
-			if ($hu!=='1'&&$hu!=='2'){
+			if (!hak_akses('1,2',$hu)){
 				return redirect('home');
 			} else {
 				// mengambil data pegawai
@@ -105,7 +105,7 @@ class SekolahController extends Controller
         else{
 			//hak akses halaman
 			$hu = Auth::user()->user_type;
-			if ($hu!=='1'&&$hu!=='2'){
+			if (!hak_akses('1,2',$hu)){
 				return redirect('home');
 			} else {
 				$messages = [

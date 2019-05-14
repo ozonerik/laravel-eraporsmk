@@ -21,7 +21,7 @@ class PenggunaController extends Controller
         else{
 			//hak akses halaman
 			$hu = Auth::user()->user_type;
-			if ($hu!=='1'&&$hu!=='2'){
+			if (!hak_akses('1,2',$hu)){
 				return redirect('home');
 			} else {
 				// mengambil data pegawai
@@ -101,7 +101,7 @@ class PenggunaController extends Controller
         else{
 			//hak akses halaman
 			$hu = Auth::user()->user_type;
-			if ($hu!=='1'&&$hu!=='2'){
+			if (!hak_akses('1,2',$hu)){
 				return redirect('home');
 			} else {
 				$id = $request->pengguna_id;
@@ -122,7 +122,7 @@ class PenggunaController extends Controller
         else{
 			//hak akses halaman
 			$hu = Auth::user()->user_type;
-			if ($hu!=='1'&&$hu!=='2'){
+			if (!hak_akses('1,2',$hu)){
 				return redirect('home');
 			} else {
 				$ids = $request->pengguna_id;
