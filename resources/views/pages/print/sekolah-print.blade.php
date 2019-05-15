@@ -23,12 +23,13 @@
 <td id="isian" colspan="7">{{ $sekolah->nss }}</td>
 </tr>
 <tr>
-<td id="item" rowspan="2" style="width:30%;vertical-align:top">Alamat Sekolah</td>
-<td id="item" rowspan="2" style="width:1%;vertical-align:top">:</td>
+<td id="item" style="width:30%">Alamat Sekolah</td>
+<td id="item" style="width:1%">:</td>
 <td id="isian" colspan="7">{{ $sekolah->alamat }}</td>
 </tr>
 <tr>
-
+<td id="item" style="width:29%"></td>
+<td id="item" style="width:1%"></td>
 <td id="item" style="width:10%">Kode Pos</td>
 <td id="item" style="width:1%">:</td>
 <td id="isian" style="width:23%">
@@ -45,6 +46,26 @@
 <td id="item">Kelurahan</td>
 <td id="item">:</td>
 <td id="isian" colspan="7">{{ $sekolah->kelurahan }}</td>
+</tr>
+<tr>
+<td id="item">Kecamatan</td>
+<td id="item">:</td>
+<td id="isian" colspan="7">{{ $sekolah->kecamatan }}</td>
+</tr>
+<tr>
+<td id="item">Provinsi</td>
+<td id="item">:</td>
+<td id="isian" colspan="7">{{ $sekolah->provinsi }}</td>
+</tr>
+<tr>
+<td id="item">Website</td>
+<td id="item">:</td>
+<td id="isian" colspan="7">{{ $sekolah->website }}</td>
+</tr>
+<tr>
+<td id="item">Email</td>
+<td id="item">:</td>
+<td id="isian" colspan="7">{{ $sekolah->email }}</td>
 </tr>
 </table>
 @endsection

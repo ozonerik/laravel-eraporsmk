@@ -21,12 +21,14 @@ class PrintController extends Controller
 			if (!hak_akses('1,2',$hu)){
 				return redirect('home');
 			} else {
+				date_default_timezone_set('Asia/Jakarta');
 				// mengambil data pegawai
 				$sekolah = ModelSekolah::where('status','aktif')->first();
 				// mengirim data pegawai ke view pegawai
-				$pdf = PDF::loadView('pages.print.sekolah-print',compact('sekolah'));
-				//return $pdf->download('identitas_sekolah.pdf');
-				return view('pages.print.sekolah-print',compact('sekolah'));
+				$pdf = PDF::loadView('pages.print.sekolah-print',compact('sekolah'))
+				->setPaper('folio', 'portrait');
+				return $pdf->download(substr(date("Ymdhi", time()),2)."_".'identitas_sekolah.pdf');
+				//return view('pages.print.sekolah-print',compact('sekolah'));
 			}
 		}
     }

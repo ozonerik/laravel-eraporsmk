@@ -30,6 +30,9 @@
 	body {
 	  font-family:'Times New Roman';
 	}
+	@page {
+	  margin: 2cm 1cm 2cm 2cm;
+	}
 	table{
 		width:100%;
 		font-size:14px;
@@ -52,5 +55,8 @@
 	}
 	#pemisah{
 		height:30px
+	}
+	#page-break {
+		page-break-after: always;
 	}
 	</style>

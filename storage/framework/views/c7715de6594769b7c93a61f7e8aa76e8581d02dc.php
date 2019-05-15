@@ -22,12 +22,13 @@
 <td id="isian" colspan="7"><?php echo e($sekolah->nss); ?></td>
 </tr>
 <tr>
-<td id="item" rowspan="2" style="width:30%;vertical-align:top">Alamat Sekolah</td>
-<td id="item" rowspan="2" style="width:1%;vertical-align:top">:</td>
+<td id="item" style="width:30%">Alamat Sekolah</td>
+<td id="item" style="width:1%">:</td>
 <td id="isian" colspan="7"><?php echo e($sekolah->alamat); ?></td>
 </tr>
 <tr>
-
+<td id="item" style="width:29%"></td>
+<td id="item" style="width:1%"></td>
 <td id="item" style="width:10%">Kode Pos</td>
 <td id="item" style="width:1%">:</td>
 <td id="isian" style="width:23%">
@@ -46,6 +47,26 @@
 <td id="item">Kelurahan</td>
 <td id="item">:</td>
 <td id="isian" colspan="7"><?php echo e($sekolah->kelurahan); ?></td>
+</tr>
+<tr>
+<td id="item">Kecamatan</td>
+<td id="item">:</td>
+<td id="isian" colspan="7"><?php echo e($sekolah->kecamatan); ?></td>
+</tr>
+<tr>
+<td id="item">Provinsi</td>
+<td id="item">:</td>
+<td id="isian" colspan="7"><?php echo e($sekolah->provinsi); ?></td>
+</tr>
+<tr>
+<td id="item">Website</td>
+<td id="item">:</td>
+<td id="isian" colspan="7"><?php echo e($sekolah->website); ?></td>
+</tr>
+<tr>
+<td id="item">Email</td>
+<td id="item">:</td>
+<td id="isian" colspan="7"><?php echo e($sekolah->email); ?></td>
 </tr>
 </table>
 <?php $__env->stopSection(); ?>

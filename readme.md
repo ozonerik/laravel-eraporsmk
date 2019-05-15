@@ -49,6 +49,16 @@ Xampp [https://downloadsapachefriends.global.ssl.fastly.net/7.2.18/xampp-windows
    - guru/guru
    - siswa/siswa
 
+## Instalasi
+Release Changelogs Versi 1.0.0
+- Sistem Otentikasi Login dan Register
+- Fungsi Hak Akses Halaman
+- CRUD (Create, Update, Delete)
+- Fungsi Multi Delete dengan Checkbox
+- Fungsi Delete dengan Modal Dialog
+- Fungsi Ekspor PDF (Paper Size: Folio)
+- Search dan Pagination
+
 ## Tim Pengembang
 - M. Ade Erik [ozonerik@gmail.com]
 

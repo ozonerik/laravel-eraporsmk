@@ -36,10 +36,10 @@
 		  <li class="fa fa-check"> CRUD (Create, Update, Delete)</li><br>
 		  <li class="fa fa-check"> Fungsi Multi Delete dengan Checkbox</li><br>
 		  <li class="fa fa-check"> Fungsi Delete dengan Modal Dialog</li><br>
-		  <li class="fa fa-check"> Fungsi Ekspor PDF</li><br>
+		  <li class="fa fa-check"> Fungsi Ekspor PDF (Paper Size: Folio)</li><br>
 		  <li class="fa fa-check"> Search dan Pagination</li><br>
-		  <li class="fa fa-close"> Fungsi Ekspor Excel</li><br>
-		  <li class="fa fa-close"> Fungsi Import Excel/CSV</li><br>
+		  <li class="fa fa-close" style="color:red"> Fungsi Ekspor Excel</li><br>
+		  <li class="fa fa-close" style="color:red"> Fungsi Import Excel/CSV</li><br>
 		  </ul>  
         </div>
         <!-- /.box-body -->
