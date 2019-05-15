@@ -49,8 +49,7 @@ Xampp [https://downloadsapachefriends.global.ssl.fastly.net/7.2.18/xampp-windows
    - guru/guru
    - siswa/siswa
 
-## Instalasi
-Release Changelogs Versi 1.0.0
+## Release Changelogs Versi 1.0.0
 - Sistem Otentikasi Login dan Register
 - Fungsi Hak Akses Halaman
 - CRUD (Create, Update, Delete)
