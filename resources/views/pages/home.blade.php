@@ -19,7 +19,7 @@
       <!-- Default box -->
       <div class="box">
         <div class="box-header with-border">
-          <h3 class="box-title">Title</h3>
+          <h3 class="box-title">Release Changelogs Versi 1.0.0</h3>
 
           <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
@@ -30,7 +30,17 @@
           </div>
         </div>
         <div class="box-body">
-          Start creating your amazing application!
+		  <ul>
+		  <li class="fa fa-check"> Sistem Otentikasi Login dan Register</li><br>
+		  <li class="fa fa-check"> Fungsi Hak Akses Halaman</li><br>
+		  <li class="fa fa-check"> CRUD (Create, Update, Delete)</li><br>
+		  <li class="fa fa-check"> Fungsi Multi Delete dengan Checkbox</li><br>
+		  <li class="fa fa-check"> Fungsi Delete dengan Modal Dialog</li><br>
+		  <li class="fa fa-check"> Fungsi Ekspor PDF</li><br>
+		  <li class="fa fa-check"> Search dan Pagination</li><br>
+		  <li class="fa fa-close"> Fungsi Ekspor Excel</li><br>
+		  <li class="fa fa-close"> Fungsi Import Excel/CSV</li><br>
+		  </ul>  
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
