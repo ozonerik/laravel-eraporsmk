@@ -31,6 +31,20 @@
             <li><a href="<?php echo e(url('pengguna')); ?>"><i class="fa fa-circle-o"></i>Pengguna</a></li>
           </ul>
         </li>
+		<li class="treeview">
+          <a href="#">
+            <i class="fa fa-print"></i>
+			<span>Print Rapor</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li>
+			<li><a href="<?php echo e(url('sekolah/pdfprint')); ?>"><i class="fa fa-circle-o"></i>Identitas Sekolah</a></li>
+			</li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
