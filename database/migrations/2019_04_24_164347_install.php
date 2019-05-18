@@ -47,6 +47,7 @@ class Install extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+		
 		Schema::table('users', function (Blueprint $table) {
 		$table->foreign('user_type')
 		  ->references('id_usertype')->on('usertypes')

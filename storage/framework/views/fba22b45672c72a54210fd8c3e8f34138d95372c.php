@@ -48,7 +48,8 @@
               <h3 class="box-title">Daftar Pengguna</h3>
 			</div>
 			<div>
-			<button type="button" class="btn-sm btn-success fa fa-plus pull-right"> Tambah</button>
+			<button type="button" class="btn-sm btn-success fa fa-plus pull-right"
+			id="tambah_data" data-toggle="modal" data-target="#addModal"> Tambah</button>
 			<button type="submit" class="btn-sm btn-danger fa fa-trash pull-right" 
 			id="delete_all" data-toggle="modal" data-target="#delallModal" 
 			> Hapus Terpilih</button>
@@ -105,7 +106,7 @@
                 </tr>
                 </tfoot>
               </table>
-			  
+			  <!-- modal konfirmasi delete -->
 				<div class="modal fade" id="delModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				  <div class="modal-dialog"role="document">
 					<div class="modal-content">
@@ -131,7 +132,7 @@
 					</div>
 				  <!-- /.modal-dialog -->
 				</div>
-				
+				<!-- modal konfirmasi delete select-->
 				<div class="modal fade" id="delallModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				  <div class="modal-dialog"role="document">
 					<div class="modal-content">
@@ -157,7 +158,71 @@
 					</div>
 				  <!-- /.modal-dialog -->
 				</div>
-				
+				<!-- modal konfirmasi add select-->
+				<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog"role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title text-center">Tambah data</h4>
+					  </div>
+					  <form action="<?php echo e(route('pengguna.store')); ?>" method="post">
+						<?php echo method_field('POST'); ?>
+						<?php echo csrf_field(); ?>
+					  <div class="modal-body">
+						<p class="text-center" id="pesan"></p>
+						  <div class="form-group has-feedback">
+							<label>Username</label>
+							<input name="username" id="username" type="text" class="form-control" placeholder="Username">
+							<span class="glyphicon glyphicon-user form-control-feedback"></span>
+						  </div>
+							<div class="form-group has-feedback">
+							<label>Email</label>
+							<input name="email" id="email" type="email" class="form-control" placeholder="E-Mail">
+							<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+						  </div>
+						  <div class="form-group has-feedback">
+							<label>Password</label>
+							<input name="password" id="password" type="password" class="form-control" placeholder="Password">
+							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+						  </div>
+						 <div class="form-group has-feedback">
+							<label>Password Confirmation</label>
+							<input name="confirmation" id="confirmation" type="password" class="form-control" placeholder="Password confirmation">
+							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+						  </div>
+						  <div class="form-group has-feedback">
+							<label>Name</label>
+							<input name="name" id="name" type="text" class="form-control" placeholder="Name">
+							<span class="glyphicon glyphicon-user form-control-feedback"></span>
+						  </div>
+						  <div class="form-group has-feedback">
+							<label>User Type</label>
+									  <select name="user_type" class="form-control">
+										<option selected hidden></option>
+										<?php $__currentLoopData = $groupuser; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+										<option value="<?php echo e($tp->id_usertype); ?>"><?php echo e($tp->group_user); ?></option>
+										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+									  </select>
+							<span class="form-control-feedback"></span>
+						  </div>				
+					  </div>
+					  <div class="modal-footer">
+						<div class="col-xs-8">
+						  <button type="button" class="btn btn-default pull-left fa fa-undo" data-dismiss="modal"> No, Cancel</button>
+						</div>
+						<!-- /.col -->
+						<div class="col-xs-4">
+						  <button type="submit" class="btn btn-primary btn-block fa fa-save"> Register</button>
+						</div>
+					  </div>
+					 </form>
+					</div>
+					<!-- /.modal-content -->
+					</div>
+				  <!-- /.modal-dialog -->
+				</div>
             </div>
             <!-- /.box-body -->
           </div>

@@ -32,7 +32,9 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-		  <a href="<?php echo e(url('register')); ?>" class="btn btn-success btn-block fa fa-user-plus"> Register</a>
+		  <!-- 
+		  <a href="<?php echo e(url('register')); ?>" class="btn btn-success btn-block fa fa-user-plus"> Register</a> 
+		  -->
         </div>
         <!-- /.col -->
         <div class="col-xs-4">

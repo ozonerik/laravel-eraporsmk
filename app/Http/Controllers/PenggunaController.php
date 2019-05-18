@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\ModelUser;
+use App\ModelUsertype;
 
 class PenggunaController extends Controller
 {
@@ -26,8 +27,9 @@ class PenggunaController extends Controller
 			} else {
 				// mengambil data pegawai
 				$pengguna = ModelUser::get();
+				$groupuser = ModelUsertype::all();
 				// mengirim data pegawai ke view pegawai
-				return view('pages.pengguna.index', compact('pengguna'));
+				return view('pages.pengguna.index', compact('pengguna','groupuser'));
 			}
 		}
     }
@@ -50,7 +52,34 @@ class PenggunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+					'required' => 'kolom :attribute wajib diisi!',
+					'digits' => 'kolom :attribute harus bernilai :digits karakter!',
+					'min' => 'kolom :attribute minimal :min karakter!',
+					'unique' => 'Silahkan ganti nilai di kolom :attribute dengan yang lain!',
+					'numeric' => 'kolom :attribute harus harus diisi dengan angka!',
+					'same' => 'kolom :attribute harus bernilai sama dengan password !',
+					'url' => 'kolom :attribute harus berbentuk URL (misalnya: http://www.test.com)!',
+					'email' => 'kolom :attribute harus berbentuk Email (misalnya: test@test.com)!',
+					'alpha_num' => 'kolom :attribute harus berbentuk Huruf dan atau angka',
+				];
+        $this->validate($request, [
+            'name' => 'required|min:4',
+			'username' => 'required|alpha_num|min:4|unique:users',
+            'email' => 'required|min:4|email|unique:users',
+            'password' => 'required|min:6',
+            'confirmation' => 'required|same:password',
+			'user_type' => 'required',
+        ],$messages);
+		//registrasi
+        $data =  new ModelUser();
+        $data->name = $request->name;
+		$data->username = $request->username;
+        $data->email = $request->email;
+        $data->password = bcrypt($request->password);
+		$data->user_type = $request->user_type;
+        $data->save();
+        return redirect()->back()->with('alert-success','Kamu berhasil Register');
     }
 
     /**

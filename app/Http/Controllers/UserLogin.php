@@ -49,12 +49,13 @@ class UserLogin extends Controller
 					'same' => 'kolom :attribute harus bernilai sama dengan password !',
 					'url' => 'kolom :attribute harus berbentuk URL (misalnya: http://www.test.com)!',
 					'email' => 'kolom :attribute harus berbentuk Email (misalnya: test@test.com)!',
+					'alpha_num' => 'kolom :attribute harus berbentuk Huruf dan atau angka',
 				];
         $this->validate($request, [
             'name' => 'required|min:4',
-			'username' => 'required|min:4|unique:users',
+			'username' => 'required|alpha_num|min:4|unique:users',
             'email' => 'required|min:4|email|unique:users',
-            'password' => 'required',
+            'password' => 'required|min:6',
             'confirmation' => 'required|same:password',
 			'user_type' => 'required',
         ],$messages);
